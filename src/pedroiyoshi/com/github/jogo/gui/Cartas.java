@@ -3,16 +3,23 @@ package pedroiyoshi.com.github.jogo.gui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import pedroiyoshi.com.github.jogo.logic.Clicked;
+
 @SuppressWarnings("serial")
 public class Cartas extends JButton implements ActionListener{
 	private String img = "";
-	private boolean open;
+	private boolean open, objetivo;
+	private int id;
 	private final Icon imagemFechada = new ImageIcon("img/cartaFechada.png");
-	Cartas(){
+	private final Clicked clicked;
+	
+	public Cartas(Clicked clicked){
+		this.clicked = clicked;
 		setIcon(imagemFechada);
 		setPreferredSize(new Dimension(100, 150));
 		addActionListener(this);
@@ -22,8 +29,9 @@ public class Cartas extends JButton implements ActionListener{
 		return img;
 	}
 	
-	public void setImagem(String img) {
+	public void setImagem(String img, int id) {
 		this.img = img;
+		this.id = id;
 	}
 	
 	public boolean isOpen() {
@@ -31,13 +39,40 @@ public class Cartas extends JButton implements ActionListener{
 	}
 	
 	public void fecharCarta() {
-		setIcon(imagemFechada);
-		open = false;
+		if(!isObjetivoAlcancado()) {
+			setIcon(imagemFechada);
+			open = false;
+		}else {
+			open = true;
+		}
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public boolean isObjetivoAlcancado() {
+		return objetivo;
+	}
+	
+	public void objetivoAlcancado(boolean objetivo) {
+		this.objetivo = objetivo;
+	}
+	
+	public void setOpen() {
+		System.out.println("open");
+		open = true;
+		Icon imagem = new ImageIcon("img/Carta" + img + ".png");
+		setIcon(imagem);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		Icon imagem = new ImageIcon("img/Carta" + img + ".png");
-		open = true;
-		setIcon(imagem);
+		if(id % 3 == 0) {
+			clicked.setCategory(this);
+		}else {
+			clicked.setCard(this);
+		}
+		clicked.clicked();
+		setOpen();
 	}
 }

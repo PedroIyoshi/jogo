@@ -24,6 +24,10 @@ public class AddCards {
 		return card;
 	}
 	
+	public void setDeck(List<Cartas> deck) {
+		this.deck = deck;
+	}
+	
 	public void setImage(){
 		for(int i = 0; i < 8; i++) {
 			do {

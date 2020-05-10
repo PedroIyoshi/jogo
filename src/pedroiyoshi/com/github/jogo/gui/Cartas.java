@@ -25,6 +25,14 @@ public class Cartas extends JButton implements ActionListener{
 		addActionListener(this);
 	}
 	
+	public void reset() {
+		img = "";
+		id = 0;
+		setIcon(imagemFechada);
+		open = false;
+		objetivo = false;
+	}
+	
 	public String getImagem() {
 		return img;
 	}
@@ -60,7 +68,6 @@ public class Cartas extends JButton implements ActionListener{
 	}
 	
 	public void setOpen() {
-		System.out.println("open");
 		open = true;
 		Icon imagem = new ImageIcon("img/Carta" + img + ".png");
 		setIcon(imagem);

@@ -1,4 +1,4 @@
-package pedroiyoshi.com.github.jogo.logic;
+package com.github.pedroiyoshi.jogo.logic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import pedroiyoshi.com.github.jogo.gui.Cartas;
+import com.github.pedroiyoshi.jogo.gui.Cartas;
 
 public class Clicked{
 	private boolean close;
@@ -48,12 +48,10 @@ public class Clicked{
 	}
 	
 	private void hasMatch() {
-		if(card == null || category == null 
-				|| deck.stream().filter(c -> c.isOpen() && !c.isObjetivoAlcancado()).count() != 1) {
-			System.out.println("pulou");
+		if(card == null || 
+		    category == null || 
+		    deck.stream().filter(c -> c.isOpen() && !c.isObjetivoAlcancado()).count() != 1)
 			return;
-		}
-		System.out.println(card.getId() + ":" + category.getId());
 		if(card.getId() - category.getId() == 2 || card.getId() - category.getId() == 1) {
 			category.objetivoAlcancado(true);
 			card.objetivoAlcancado(true);

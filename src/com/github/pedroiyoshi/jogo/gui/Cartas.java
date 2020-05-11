@@ -1,4 +1,4 @@
-package pedroiyoshi.com.github.jogo.gui;
+package com.github.pedroiyoshi.jogo.gui;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import pedroiyoshi.com.github.jogo.logic.Clicked;
+import com.github.pedroiyoshi.jogo.logic.Clicked;
 
 @SuppressWarnings("serial")
 public class Cartas extends JButton implements ActionListener{

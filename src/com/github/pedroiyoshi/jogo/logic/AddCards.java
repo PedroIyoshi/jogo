@@ -1,9 +1,9 @@
-package pedroiyoshi.com.github.jogo.logic;
+package com.github.pedroiyoshi.jogo.logic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import pedroiyoshi.com.github.jogo.gui.Cartas;
+import com.github.pedroiyoshi.jogo.gui.Cartas;
 
 public class AddCards {
 	private final String[] options = {

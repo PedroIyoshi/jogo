@@ -8,12 +8,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import com.github.pedroiyoshi.jogo.logic.AddCards;
 
@@ -93,12 +95,14 @@ public class Painel extends JPanel implements ActionListener{
 		voltar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(Box.createRigidArea(new Dimension(0, 20)));
 		add(painel);
+		painel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 		painel.add(Box.createRigidArea(new Dimension(25, 0)));
 		painel.add(explicacao);
 		painel.add(Box.createRigidArea(new Dimension(25, 0)));
 		voltar.addActionListener(this);
 		add(Box.createVerticalGlue());
 		add(voltar);
+		add(Box.createRigidArea(new Dimension(0, 25)));
 	}
 	
 	public void actionPerformed(ActionEvent e) {

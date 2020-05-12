@@ -3,6 +3,8 @@ package com.github.pedroiyoshi.jogo.gui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -11,26 +13,23 @@ import javax.swing.JButton;
 import com.github.pedroiyoshi.jogo.logic.Clicked;
 
 @SuppressWarnings("serial")
-public class Cartas extends JButton implements ActionListener{
+public class Card extends JButton implements ActionListener{
 	private String img = "";
-	private boolean open, objetivo;
+	private static List<Card> deck = new ArrayList<>();
+	private boolean open, goal;
 	private int id;
-	private final Icon imagemFechada = new ImageIcon("img/cartaFechada.png");
-	private final Clicked clicked;
+	private final Icon imgClosed = new ImageIcon("img/cartaFechada.png");
+	private static final Clicked clicked = new Clicked();
 	
-	public Cartas(Clicked clicked){
-		this.clicked = clicked;
-		setIcon(imagemFechada);
+	public Card(){
+		deck.add(this);
+		setIcon(imgClosed);
 		setPreferredSize(new Dimension(100, 150));
 		addActionListener(this);
 	}
 	
-	public void reset() {
-		img = "";
-		id = 0;
-		setIcon(imagemFechada);
-		open = false;
-		objetivo = false;
+	public static List<Card> getDeck(){
+		return deck;
 	}
 	
 	public String getImagem() {
@@ -45,32 +44,40 @@ public class Cartas extends JButton implements ActionListener{
 	public boolean isOpen() {
 		return open;
 	}
-	
-	public void fecharCarta() {
-		if(!isObjetivoAlcancado()) {
-			setIcon(imagemFechada);
-			open = false;
-		}else {
-			open = true;
-		}
-	}
-	
+
 	public int getId() {
 		return id;
 	}
 	
-	public boolean isObjetivoAlcancado() {
-		return objetivo;
+	public boolean isGoalAchieved() {
+		return goal;
 	}
 	
-	public void objetivoAlcancado(boolean objetivo) {
-		this.objetivo = objetivo;
+	public void setGoal(boolean objetivo) {
+		this.goal = objetivo;
 	}
-	
-	public void setOpen() {
+
+	private void setOpen() {
 		open = true;
 		Icon imagem = new ImageIcon("img/Carta" + img + ".png");
 		setIcon(imagem);
+	}
+
+	public void reset() {
+		img = "";
+		id = 0;
+		setIcon(imgClosed);
+		open = false;
+		goal = false;
+	}
+	
+	public void closeCard() {
+		if(!isGoalAchieved()) {
+			setIcon(imgClosed);
+			open = false;
+		}else {
+			open = true;
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {

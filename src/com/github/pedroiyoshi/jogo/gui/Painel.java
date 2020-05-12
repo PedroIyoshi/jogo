@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 import com.github.pedroiyoshi.jogo.logic.AddCards;
 
@@ -34,6 +33,23 @@ public class Painel extends JPanel implements ActionListener{
 			add(addC.createButton());
 		}
 		addC.setImage();
+	}	
+	
+	private JButton addButton(String text) {
+		JButton btn = new JButton(text);
+		btn.setForeground(Color.WHITE);
+		btn.setFont(new Font("Arial", Font.BOLD, 30));
+		btn.setMaximumSize(new Dimension(250, 50));
+		btn.setBackground(new Color(150, 150, 150));
+		return btn;
+	}
+	
+	private JLabel addLbl(String text, int size) {
+		JLabel lbl = new JLabel(text);
+		lbl.setForeground(Color.WHITE);
+		lbl.setFont(new Font("Arial", Font.BOLD, size));
+		lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
+		return lbl;
 	}
 	
 	private void painelMain(){
@@ -41,19 +57,12 @@ public class Painel extends JPanel implements ActionListener{
 		setBackground(new Color(50, 50, 50));
 		JButton btnPlay = addButton("Play");
 		JButton btnHow = addButton("Como jogar");
-		JLabel lblReciclagem = new JLabel("Reciclagem");
+		JLabel lblReciclagem = addLbl("Reciclagem", 70);
 		JLabel lblSimbolo = new JLabel(new ImageIcon("img/SimboloReciclagem.png"));
-		
 		btnPlay.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnPlay.addActionListener(this);
-		
-		lblReciclagem.setForeground(Color.WHITE);
-		lblReciclagem.setFont(new Font("Arial", Font.BOLD, 70));
-		lblReciclagem.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
 		btnHow.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnHow.addActionListener(this);
-		
 		lblSimbolo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(Box.createRigidArea(new Dimension(0, 30)));
 		add(lblReciclagem);
@@ -63,15 +72,6 @@ public class Painel extends JPanel implements ActionListener{
 		add(btnHow, lblSimbolo);
 		add(Box.createVerticalGlue());
 		add(lblSimbolo);
-	}
-	
-	private JButton addButton(String text) {
-		JButton btn = new JButton(text);
-		btn.setForeground(Color.WHITE);
-		btn.setFont(new Font("Arial", Font.BOLD, 30));
-		btn.setMaximumSize(new Dimension(250, 50));
-		btn.setBackground(new Color(150, 150, 150));
-		return btn;
 	}
 	
 	private void how() {
@@ -86,20 +86,17 @@ public class Painel extends JPanel implements ActionListener{
 				+ "Vidro(Verde): Lampada e taça";
 		JButton voltar = addButton("Voltar");
 		JPanel painel = new JPanel();
+		JLabel explicacao = addLbl(e, 30);
+		voltar.setAlignmentX(Component.CENTER_ALIGNMENT);
+		voltar.addActionListener(this);
 		painel.setLayout(new BoxLayout(painel, BoxLayout.LINE_AXIS));
 		painel.setBackground(new Color(50, 50, 50));
-		JLabel explicacao = new JLabel(e);
-		explicacao.setFont(new Font("Arial", Font.BOLD, 30));
-		explicacao.setForeground(Color.WHITE);
-		explicacao.setAlignmentX(Component.CENTER_ALIGNMENT);
-		voltar.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(Box.createRigidArea(new Dimension(0, 20)));
-		add(painel);
 		painel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 		painel.add(Box.createRigidArea(new Dimension(25, 0)));
 		painel.add(explicacao);
 		painel.add(Box.createRigidArea(new Dimension(25, 0)));
-		voltar.addActionListener(this);
+		add(Box.createRigidArea(new Dimension(0, 20)));
+		add(painel);
 		add(Box.createVerticalGlue());
 		add(voltar);
 		add(Box.createRigidArea(new Dimension(0, 25)));

@@ -1,12 +1,9 @@
 package com.github.pedroiyoshi.jogo.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
-public class Jogo extends JFrame implements ActionListener{
+public class Jogo extends JFrame{
 	private Jogo() {
 		setSize(440, 665);
 		setTitle("Jogo");
@@ -21,11 +18,6 @@ public class Jogo extends JFrame implements ActionListener{
 	}
 	
 	private void organizarLayout() {
-		Painel painel = new Painel();
-		add(painel);
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-		
+		add(new Painel());
 	}
 }

@@ -1,9 +1,8 @@
 package com.github.pedroiyoshi.jogo.logic;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.github.pedroiyoshi.jogo.gui.Cartas;
+import com.github.pedroiyoshi.jogo.gui.Card;
 
 public class AddCards {
 	private final String[] options = {
@@ -14,18 +13,12 @@ public class AddCards {
 			"NaoReciclavel", "Seringa", "PapelHigienico",
 			"Vidro", "Lampada", "Taca"
 	};
-	private List<Cartas> deck = new ArrayList<>();
 	private int c, t;
-	private final Clicked clicked = new Clicked();
+	private final List<Card> deck = Card.getDeck();
 	
-	public Cartas createButton() {
-		Cartas card = new Cartas(clicked);
-		deck.add(card);
+	public Card createButton() {
+		Card card = new Card();
 		return card;
-	}
-	
-	public void setDeck(List<Cartas> deck) {
-		this.deck = deck;
 	}
 	
 	public void setImage(){
@@ -37,7 +30,6 @@ public class AddCards {
 			deck.get(randomPlace()).setImagem(options[c], c);
 			deck.get(randomPlace()).setImagem(options[t], t);
 		}
-		clicked.setDeck(deck);
 	}
 	
 	private int randomPlace() {

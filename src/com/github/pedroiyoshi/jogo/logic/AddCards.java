@@ -1,7 +1,6 @@
 package com.github.pedroiyoshi.jogo.logic;
 
 import java.util.List;
-
 import com.github.pedroiyoshi.jogo.gui.Card;
 
 public class AddCards {

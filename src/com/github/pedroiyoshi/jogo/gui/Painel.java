@@ -8,7 +8,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -33,7 +32,7 @@ public class Painel extends JPanel implements ActionListener{
 			add(addC.createButton());
 		}
 		addC.setImage();
-	}	
+	}
 	
 	private JButton addButton(String text) {
 		JButton btn = new JButton(text);
@@ -44,20 +43,15 @@ public class Painel extends JPanel implements ActionListener{
 		return btn;
 	}
 	
-	private JLabel addLbl(String text, int size) {
-		JLabel lbl = new JLabel(text);
-		lbl.setForeground(Color.WHITE);
-		lbl.setFont(new Font("Arial", Font.BOLD, size));
-		lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
-		return lbl;
-	}
-	
 	private void painelMain(){
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		setBackground(new Color(50, 50, 50));
 		JButton btnPlay = addButton("Play");
 		JButton btnHow = addButton("Como jogar");
-		JLabel lblReciclagem = addLbl("Reciclagem", 70);
+		JLabel lblReciclagem = new JLabel("Reciclagem");
+		lblReciclagem.setForeground(Color.WHITE);
+		lblReciclagem.setFont(new Font("Arial", Font.BOLD, 70));
+		lblReciclagem.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JLabel lblSimbolo = new JLabel(new ImageIcon("img/SimboloReciclagem.png"));
 		btnPlay.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnPlay.addActionListener(this);
@@ -76,27 +70,13 @@ public class Painel extends JPanel implements ActionListener{
 	
 	private void how() {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		String e = "<html>"
-				+ "Para jogar, combine as categorias "
-				+ "com os seus tipos de lixo:\n"
-				+ "Metal(Amarelo): Latas\n"
-				+ "Papel(Azul): Folha e livros\n"
-				+ "Organico(Marrom): Maça e banana\n"
-				+ "Não reciclave(Cinza): Seringa e papel higiênico\n"
-				+ "Vidro(Verde): Lampada e taça";
 		JButton voltar = addButton("Voltar");
-		JPanel painel = new JPanel();
-		JLabel explicacao = addLbl(e, 30);
+		JLabel explicacao = new JLabel(new ImageIcon("img/explicacao.png"));
 		voltar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		voltar.addActionListener(this);
-		painel.setLayout(new BoxLayout(painel, BoxLayout.LINE_AXIS));
-		painel.setBackground(new Color(50, 50, 50));
-		painel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-		painel.add(Box.createRigidArea(new Dimension(25, 0)));
-		painel.add(explicacao);
-		painel.add(Box.createRigidArea(new Dimension(25, 0)));
-		add(Box.createRigidArea(new Dimension(0, 20)));
-		add(painel);
+		explicacao.setAlignmentX(Component.CENTER_ALIGNMENT);
+		add(Box.createRigidArea(new Dimension(0, 10)));
+		add(explicacao);
 		add(Box.createVerticalGlue());
 		add(voltar);
 		add(Box.createRigidArea(new Dimension(0, 25)));
